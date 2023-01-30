@@ -5,9 +5,11 @@ import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import css from 'rollup-plugin-css-only';
 import preprocess from 'svelte-preprocess';
-
+import scss from "rollup-plugin-scss";
 const production = !process.env.ROLLUP_WATCH;
 
+const theme = "main"
+const themePath = "src/theme/" + theme + "/"
 function serve() {
 	let server;
 
@@ -44,6 +46,11 @@ export default {
 				dev: !production
 			},
 			preprocess: preprocess()
+		}),
+		scss({
+			include: [themePath + "*.scss"],
+			output: "theme.css",
+			failOnError: true,
 		}),
 		// we'll extract any component CSS out into
 		// a separate file - better for performance
