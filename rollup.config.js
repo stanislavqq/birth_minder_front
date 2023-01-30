@@ -48,9 +48,9 @@ export default {
 			preprocess: preprocess()
 		}),
 		scss({
-			include: [themePath + "*.scss"],
-			output: "theme.css",
-			failOnError: true,
+			include: ["./src/theme/main/*.scss"],
+			fileName: "theme.css",
+			//failOnError: true,
 		}),
 		// we'll extract any component CSS out into
 		// a separate file - better for performance
